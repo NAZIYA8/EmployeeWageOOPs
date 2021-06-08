@@ -12,19 +12,24 @@ public class EmpWage {
      * If Absent Salary is returned 0
      */
     private static void calculateWage() {
-        double isPartTime = 1;
-        double isFullTime = 2;
-        double EmpRatePerHr = 20;
-        double EmpHrs;
-        double empCheck = Math.floor(Math.random() * 10) % 3;
 
-        if (empCheck == isFullTime) {
-            EmpHrs = 12;
-        } else if (empCheck == isPartTime) {
-            EmpHrs = 8;
-        } else {
-            EmpHrs = 0;
+        final int isPartTime = 1;
+        final int isFullTime = 2;
+        int EmpRatePerHr = 20;
+        int EmpHrs;
+        int empCheck = (int) Math.floor(Math.random() * 10) % 3;
+
+        switch ((int) empCheck) {
+            case isPartTime:
+                EmpHrs = 8;
+                break;
+            case isFullTime:
+                EmpHrs = 12;
+                break;
+            default:
+                EmpHrs = 0;
         }
+
         CalculateSalary(EmpRatePerHr, EmpHrs);
     }
 
@@ -34,6 +39,5 @@ public class EmpWage {
     private static void CalculateSalary(double EmpRatePerHr, double EmpHrs) {
         double Salary = EmpRatePerHr * EmpHrs;
         System.out.println(Salary);
-
     }
 }
