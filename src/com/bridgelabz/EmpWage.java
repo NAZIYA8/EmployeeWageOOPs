@@ -1,51 +1,43 @@
 package com.bridgelabz;
 
 public class EmpWage {
+    public static final int IS_PART_TIME = 1;
+    public static final int IS_FULL_TIME = 2;
+    public static int Max_Hrs_In_Month = 100;
+    public static int Num_Working_Days = 20;
+    public static int Emp_Rate_Per_Hr = 20;
+
 
     public static void main(String[] args) {
-        calculateWage();
-    }
 
-    /**
-     * Check if the employee is Present
-     * If Present Salary is returned
-     * If Absent Salary is returned 0
-     */
-    private static void calculateWage() {
 
-        final int isPartTime = 1;
-        final int isFullTime = 2;
-        int EmpRatePerHr = 20;
-        int numWorkingHrs = 20;
-        int EmpHrs;
-        //int TotalSalary=0;
-        double TotalSalary = 0;
-        int empCheck = (int) Math.floor(Math.random() * 10) % 3;
-        for (int i = 0; i <= numWorkingHrs; i++) {
+        int TotalSalary = 0;
+        int EmpHrs = 0;
+        int TotalEmpHrs = 0;
+        int TotalWorkingDays = 0;
 
+        while (TotalEmpHrs < Max_Hrs_In_Month && TotalWorkingDays < Num_Working_Days) {
+            TotalWorkingDays = TotalWorkingDays + 1;
+            System.out.println("Day:" + TotalWorkingDays);
+
+            int empCheck = (int) Math.floor(Math.random() * 10) % 3;
             switch (empCheck) {
-                case isPartTime:
+                case IS_PART_TIME:
+                    System.out.println("Empcheck is 1 (parttime)");
                     EmpHrs = 8;
                     break;
-                case isFullTime:
+                case IS_FULL_TIME:
+                    System.out.println("Empcheck is 2 (fulltime)");
                     EmpHrs = 12;
                     break;
                 default:
+                    System.out.println("Empcheck is 0");
                     EmpHrs = 0;
             }
-
-            double sum = CalculateSalary(EmpRatePerHr, EmpHrs);
-            TotalSalary = (TotalSalary + sum);
+            TotalEmpHrs = (TotalEmpHrs + EmpHrs);
+            System.out.println("Total employee hours:" + TotalEmpHrs);
         }
-    }
-
-    /**
-     * Salary is calculated
-     */
-    public static double CalculateSalary(double EmpRatePerHr, double EmpHrs) {
-
-        double Salary = EmpRatePerHr * EmpHrs;
-        System.out.println(Salary);
-        return Salary;
+        TotalSalary = (TotalEmpHrs * Emp_Rate_Per_Hr);
+        System.out.println("Total Salary : " + TotalSalary);
     }
 }
